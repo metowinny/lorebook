@@ -7,8 +7,16 @@
     $('view-article').hidden = true;
   };
 
-  const id = new URLSearchParams(location.search).get('id');
-  if (!id) return fail('Персонаж не выбран');
+  const site = await App.json('data/site.json').catch(() => ({ characters: [] }));
+  const id = new URLSearchParams(location.search).get('id') || (site.characters || [])[0];
+  if (!id) return fail('В архиве пока нет персонажей');
+  if (!new URLSearchParams(location.search).get('id')) { location.replace(`character.html?id=${encodeURIComponent(id)}`); return; }
+  const picker = $('character-select');
+  const profiles = await Promise.all((site.characters || []).map(async pid => {
+    try { return { id: pid, data: await App.json(`characters/${encodeURIComponent(pid)}/data.json`) }; } catch (_) { return null; }
+  }));
+  profiles.filter(Boolean).forEach(p => { const option = document.createElement('option'); option.value = p.id; option.textContent = p.data.name || p.id; option.selected = p.id === id; picker.appendChild(option); });
+  picker.addEventListener('change', () => { location.href = `character.html?id=${encodeURIComponent(picker.value)}`; });
   const base = `characters/${encodeURIComponent(id)}/`;
 
   let data;
@@ -18,8 +26,7 @@
   } catch (e) {
     return fail('Персонаж не найден');
   }
-  const site = await App.json('data/site.json').catch(() => ({}));
-
+  document.body.dataset.character = id;
   App.applyTheme(document.documentElement, data.theme);
   document.title = `${data.name || id} — ${site.title || 'Лорсайт'}`;
 
