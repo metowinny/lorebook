@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Персонаж</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="page">
+<nav class="topbar"><a class="gel" href="index.html">Все персонажи</a></nav>
+<header class="hero" id="hero"></header>
+<nav class="tabs" id="tabs">
+<a class="tab" href="#article" data-tab="article">Статья</a>
+<a class="tab" href="#gallery" data-tab="gallery">Галерея</a>
+</nav>
+<div class="layout" id="view-article">
+<article class="panel article" id="article"></article>
+<aside class="side" id="side"></aside>
+</div>
+<div id="view-gallery" hidden>
+<div id="gallery"></div>
+</div>
+</div>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Просмотр изображения">
+<button type="button" class="gel lb-nav lb-prev" id="lb-prev" aria-label="Предыдущее">‹</button>
+<figure class="lb-fig">
+<img id="lb-img" alt="">
+<figcaption id="lb-cap"></figcaption>
+<div class="lb-actions">
+<button type="button" class="gel" id="lb-copy">Копировать</button>
+<a class="gel" id="lb-open" target="_blank" rel="noopener">Открыть оригинал</a>
+<button type="button" class="gel" id="lb-close">Закрыть</button>
+</div>
+<p class="lb-status" id="lb-status" aria-live="polite"></p>
+</figure>
+<button type="button" class="gel lb-nav lb-next" id="lb-next" aria-label="Следующее">›</button>
+</div>
+<script src="assets/app.js"></script>
+<script src="assets/character.js"></script>
+</body>
+</html>
