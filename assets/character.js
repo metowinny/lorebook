@@ -32,8 +32,13 @@
 
   const hero = $('hero');
   const q = typeof data.quote === 'string' ? { text: data.quote } : data.quote;
-  hero.innerHTML = `<div class="hero-inner"><h1>${App.esc(data.name || id)}</h1>${q && q.text ? `<blockquote class="hero-quote"><p>${App.inline(q.text)}</p>${q.by ? `<footer>${App.esc(q.by)}</footer>` : ''}</blockquote>` : ''}</div>`;
+  hero.innerHTML = `<div class="hero-glow"></div><div class="hero-sparks"></div><div class="hero-inner"><h1>${App.esc(data.name || id)}</h1>${q && q.text ? `<blockquote class="hero-quote"><p>${App.inline(q.text)}</p>${q.by ? `<footer>${App.esc(q.by)}</footer>` : ''}</blockquote>` : ''}</div>`;
   if (data.header) hero.style.backgroundImage = `url("${App.resolve(base, data.header)}")`;
+  if (typeof Sparkles !== 'undefined') {
+    const sparks = hero.querySelector('.hero-sparks');
+    Sparkles.flies(sparks, 10, false);
+    Sparkles.stars(sparks, 10);
+  }
 
   const link = n => {
     const o = typeof n === 'string' ? { name: n } : n;
@@ -58,14 +63,35 @@
     `<section class="box"><h2 class="box-title">${App.esc(data.name || id)}</h2>${rows.length ? `<dl class="box-body">${rows.join('')}</dl>` : ''}</section>` +
     (fam.length ? `<section class="box"><h2 class="box-title">Семья</h2><dl class="box-body">${fam.map(f => `<div class="row"><dt>${App.esc(f.label)}</dt><dd>${f.names.map(link).join('<br>')}</dd></div>`).join('')}</dl></section>` : '');
 
-  const relations = () => {
-    const groups = (data.relations || []).map(g => ({ title: g.title, items: list(g.items).filter(i => i.name) })).filter(g => g.items.length);
-    return groups.map(g => `<h3>${App.esc(g.title || '')}</h3><div class="rel-grid">${g.items.map(i => `<div class="rel"><div class="rel-head"><span class="rel-name">${link(i)}</span>${i.role ? `<span class="tag">${App.esc(i.role)}</span>` : ''}</div>${i.text ? `<p>${App.inline(i.text)}</p>` : ''}</div>`).join('')}</div>`).join('');
-  };
+  const relGroups = (data.relations || []).map(g => ({ title: g.title, items: list(g.items).filter(i => i.name) })).filter(g => g.items.length);
+  await Promise.all(relGroups.flatMap(g => g.items).map(async i => {
+    const d = Array.isArray(i.details) ? i.details.join('\n\n') : String(i.details || '');
+    i.full = /\.md$/i.test(d.trim()) ? await App.text(base + d.trim()).catch(() => '') : d;
+  }));
+
+  const relCard = i => `<div class="rel"><div class="rel-head"><span class="rel-name">${link(i)}</span>${i.role ? `<span class="tag">${App.esc(i.role)}</span>` : ''}</div>${i.text ? `<p>${App.inline(i.text)}</p>` : ''}</div>`;
+
+  const relations = () => relGroups.map(g => {
+    let html = `<h3>${App.esc(g.title || '')}</h3>`;
+    let buf = [];
+    const flush = () => {
+      if (buf.length) html += `<div class="rel-grid">${buf.join('')}</div>`;
+      buf = [];
+    };
+    g.items.forEach(i => {
+      if (i.full && i.full.trim()) {
+        flush();
+        html += `<div class="rel-entry">${relCard(i)}<div class="rel-full">${App.parse(i.full, base, () => '').lead}</div></div>`;
+      } else buf.push(relCard(i));
+    });
+    flush();
+    return html;
+  }).join('');
 
   const parsed = App.parse(lore, base, name => (name === 'relations' ? relations() : ''));
   const toc = parsed.sections.length >= 3 ? `<nav class="toc"><strong>Содержание</strong><ol>${parsed.sections.map(s => `<li><a href="#${s.id}">${App.esc(s.title)}</a></li>`).join('')}</ol></nav>` : '';
-  const articleHtml = (parsed.lead ? `<div class="lead">${parsed.lead}</div>` : '') + toc + parsed.sections.map(s => `<section id="${s.id}"><h2>${App.esc(s.title)}</h2>${s.html}</section>`).join('');
+  const portrait = data.portrait && data.portrait.src ? `<figure class="portrait"><div class="portrait-frame"><img src="${App.esc(App.resolve(base, data.portrait.src))}" alt="${App.esc(data.portrait.caption || '')}"></div>${data.portrait.caption ? `<figcaption>${App.inline(data.portrait.caption)}</figcaption>` : ''}</figure>` : '';
+  const articleHtml = portrait + (parsed.lead ? `<div class="lead">${parsed.lead}</div>` : '') + toc + parsed.sections.map(s => `<section id="${s.id}"><h2>${App.esc(s.title)}</h2>${s.html}</section>`).join('');
   $('article').innerHTML = articleHtml || '<p>Здесь пока пусто. Заполни файл lore.md.</p>';
 
   const cats = [['reference', 'Референс'], ['model', 'Модель'], ['arts', 'Арты']];
