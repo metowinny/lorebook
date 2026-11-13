@@ -36,8 +36,8 @@
   if (data.header) hero.style.backgroundImage = `url("${App.resolve(base, data.header)}")`;
   if (typeof Sparkles !== 'undefined') {
     const sparks = hero.querySelector('.hero-sparks');
-    Sparkles.flies(sparks, 10, false);
-    Sparkles.stars(sparks, 10);
+    Sparkles.flies(sparks, 4, false);
+    Sparkles.stars(sparks, 4);
   }
 
   const link = n => {

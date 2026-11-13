@@ -14,17 +14,17 @@ body[data-character="bagryanoe-novolunie"]{
 --accent-dark:#3a123c;
 --violet:#8b5cf6;
 --violet-light:#c9b0ff;
---bg-top:#170d2b;
---bg-bottom:#05040d;
---text:#f0dce9;
---panel-top:rgba(43,19,54,.88);
---panel-bottom:rgba(13,8,25,.96);
+--bg-top:#100820;
+--bg-bottom:#040309;
+--text:#e9d7e4;
+--panel-top:rgba(30,14,42,.92);
+--panel-bottom:rgba(8,5,16,.97);
 --edge:rgba(226,73,158,.25);
-background-image:radial-gradient(ellipse at 80% 5%,rgba(163,35,132,.22),transparent 32%),radial-gradient(ellipse at 10% 35%,rgba(84,50,160,.3),transparent 42%),radial-gradient(ellipse at 55% 100%,rgba(110,70,220,.2),transparent 48%),linear-gradient(160deg,#170d2b,#080611 68%,#03030a);
+background-image:radial-gradient(ellipse at 80% 5%,rgba(163,35,132,.14),transparent 32%),radial-gradient(ellipse at 10% 35%,rgba(84,50,160,.17),transparent 42%),radial-gradient(ellipse at 55% 100%,rgba(110,70,220,.1),transparent 48%),linear-gradient(160deg,#0f0820,#060410 68%,#020207);
 }
-body[data-character="bagryanoe-novolunie"]::before{opacity:.28;background-image:radial-gradient(rgba(214,176,255,.6) .7px,transparent .8px);background-size:31px 31px;mask-image:linear-gradient(180deg,#000,transparent 80%)}
-body[data-character="bagryanoe-novolunie"] .hero{background-color:#13091f;box-shadow:0 18px 48px rgba(0,0,0,.65),0 0 38px rgba(139,92,246,.22)}
-body[data-character="bagryanoe-novolunie"] .hero::before{background:linear-gradient(90deg,rgba(7,3,17,.28),rgba(9,3,19,.04) 70%),linear-gradient(0deg,rgba(5,3,13,.95),rgba(9,3,20,.04) 85%),linear-gradient(180deg,rgba(213,105,186,.09),transparent 45%)}
+body[data-character="bagryanoe-novolunie"]::before{opacity:.18;background-image:radial-gradient(rgba(214,176,255,.6) .7px,transparent .8px);background-size:31px 31px;mask-image:linear-gradient(180deg,#000,transparent 80%)}
+body[data-character="bagryanoe-novolunie"] .hero{background-color:#13091f;box-shadow:0 18px 48px rgba(0,0,0,.7),0 0 32px rgba(139,92,246,.14)}
+body[data-character="bagryanoe-novolunie"] .hero::before{background:linear-gradient(90deg,rgba(7,3,17,.28),rgba(9,3,19,.04) 70%),linear-gradient(0deg,rgba(4,2,10,.96),rgba(9,3,20,.18) 85%),linear-gradient(180deg,rgba(5,2,12,.3),transparent 45%)}
 body[data-character="bagryanoe-novolunie"] .hero::after{color:#f5a1d0;text-shadow:0 0 12px #c52c82}
 body[data-character="bagryanoe-novolunie"] .hero h1{text-shadow:0 0 34px rgba(139,92,246,.6),0 0 20px rgba(232,42,147,.35),0 4px 18px #000}
 body[data-character="bagryanoe-novolunie"] .tab[aria-current=page]{background:linear-gradient(180deg,#d64a9a,#6d3fc4);border-color:#f38ac1}
@@ -44,7 +44,7 @@ html{scrollbar-color:color-mix(in srgb,var(--violet) 55%,#000) transparent}
 .page{z-index:1}
 .sparkles{position:fixed;inset:0;overflow:hidden;pointer-events:none}
 .sparkles.back{z-index:0}
-.sparkles.front{z-index:2;opacity:.7}
+.sparkles.front{z-index:2;opacity:.5}
 .sp1{--spark:var(--accent-light)}
 .sp2{--spark:var(--violet-light)}
 .sp3{--spark:#fff}
@@ -52,23 +52,26 @@ html{scrollbar-color:color-mix(in srgb,var(--violet) 55%,#000) transparent}
 .star{position:absolute;font-style:normal;font-family:"Segoe UI Symbol","Apple Symbols","DejaVu Sans",sans-serif;font-size:var(--s);line-height:1;color:var(--spark);text-shadow:0 0 8px var(--spark),0 0 18px var(--spark);opacity:0;animation:twinkle var(--g) ease-in-out infinite}
 .star::before{content:"✦"}
 @keyframes drift{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(var(--dx),var(--dy),0)}}
-@keyframes glow{0%,100%{opacity:0}50%{opacity:.95}}
-@keyframes twinkle{0%,100%{opacity:0;transform:scale(.4) rotate(0deg)}50%{opacity:1;transform:scale(1) rotate(45deg)}}
+@keyframes glow{0%,100%{opacity:0}50%{opacity:.75}}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.4) rotate(0deg)}50%{opacity:.8;transform:scale(1) rotate(45deg)}}
 @keyframes twinkle-text{0%,100%{opacity:.35}50%{opacity:1}}
 .hero{border-color:color-mix(in srgb,var(--violet) 45%,transparent)}
 .hero-glow,.hero-sparks{position:absolute;inset:0;pointer-events:none}
-.hero-glow{mix-blend-mode:screen;background:radial-gradient(ellipse at 10% 100%,color-mix(in srgb,var(--violet) 40%,transparent),transparent 55%),radial-gradient(ellipse at 96% 0,color-mix(in srgb,var(--accent) 30%,transparent),transparent 45%)}
+.hero-glow{background:radial-gradient(ellipse at 10% 100%,color-mix(in srgb,var(--violet) 26%,transparent),transparent 55%),radial-gradient(ellipse at 96% 0,color-mix(in srgb,var(--accent) 16%,transparent),transparent 45%)}
 .hero-sparks{overflow:hidden}
 .hero h1{font-family:var(--display);font-weight:700;font-size:clamp(2.9rem,7.4vw,5.8rem);line-height:.98;letter-spacing:-.01em;text-shadow:0 0 30px color-mix(in srgb,var(--violet) 55%,transparent),0 3px 18px rgba(0,0,0,.6)}
-.hero-quote{font-family:var(--script);font-style:normal;font-size:1.35rem;line-height:1.45}
-.hero-quote footer{font-family:var(--font);font-size:.85rem}
-.panel,.box{background:linear-gradient(155deg,color-mix(in srgb,var(--violet) 13%,var(--panel-top)),var(--panel-bottom));border-color:color-mix(in srgb,var(--violet) 32%,var(--edge))}
+.hero-quote{display:block;max-width:760px;margin:10px 0 0;padding:0;background:none;border:0;border-radius:0;box-shadow:none;backdrop-filter:none;font-family:var(--script);font-style:normal;font-size:clamp(1.5rem,3.2vw,2.2rem);line-height:1.3;color:#fff;text-shadow:0 0 20px color-mix(in srgb,var(--violet) 70%,transparent),0 2px 10px rgba(0,0,0,.8)}
+.hero-quote::before{content:"";display:block;width:150px;height:2px;margin:0 0 12px;background:linear-gradient(90deg,var(--accent-light),var(--violet),transparent)}
+.hero-quote p::before,.hero-quote p::after{color:var(--violet-light)}
+.hero-quote footer{margin-top:6px;font-family:var(--font);font-size:.95rem;text-align:left;color:var(--accent-light);opacity:.9;text-shadow:0 1px 6px rgba(0,0,0,.8)}
+.hero-quote footer::before{content:"— "}
+.panel,.box{background:linear-gradient(155deg,color-mix(in srgb,var(--violet) 6%,var(--panel-top)),var(--panel-bottom));border-color:color-mix(in srgb,var(--violet) 32%,var(--edge))}
 .tab:hover,.gel:hover{box-shadow:0 0 16px color-mix(in srgb,var(--violet) 45%,transparent),0 1px 0 rgba(255,255,255,.16) inset}
-.article h2,.gal-section h2{font-family:var(--display);font-weight:700;font-size:2.15rem;line-height:1.1;letter-spacing:0}
+.article h2,.gal-section h2{font-family:var(--display);font-weight:700;font-size:2.4rem;line-height:1.1;letter-spacing:0}
 .article h2{clear:both}
-.article h2::before,.gal-section h2::before{content:"✦";margin-right:.45em;font-family:"Segoe UI Symbol","Apple Symbols","DejaVu Sans",sans-serif;font-size:.5em;vertical-align:.5em;color:var(--violet-light);text-shadow:0 0 10px var(--violet);animation:twinkle-text 3.4s ease-in-out infinite}
+.article h2::before,.gal-section h2::before{content:"✦";position:absolute;left:-1.25em;top:calc(50% - 5px);transform:translateY(-50%);font-family:"Segoe UI Symbol","Apple Symbols","DejaVu Sans",sans-serif;font-size:.55em;line-height:1;color:var(--violet-light);text-shadow:0 0 10px var(--violet);animation:twinkle-text 3.4s ease-in-out infinite}
 .article h2::after,.gal-section h2::after{height:2px;background:linear-gradient(90deg,var(--accent),var(--violet) 55%,transparent)}
-.article h3{font-family:var(--head);font-weight:700;font-size:1.3rem;color:var(--violet-light)}
+.article h3{font-family:var(--head);font-weight:700;font-size:1.25rem;color:var(--violet-light)}
 .article h4{font-family:var(--head);font-weight:700}
 .article p{text-align:justify;text-indent:1.6em;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}
 .article .rel p{text-align:left;text-indent:0;hyphens:manual}
@@ -82,20 +85,26 @@ html{scrollbar-color:color-mix(in srgb,var(--violet) 55%,#000) transparent}
 .portrait-frame img{display:block;width:100%;height:100%;object-fit:cover}
 .portrait-frame::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(255,255,255,.2),transparent 40%);pointer-events:none}
 .portrait figcaption{margin-top:9px;font-family:var(--script);font-size:1.05rem;line-height:1.3;text-align:center;color:var(--violet-light)}
-.toc{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-width:0;margin:1.1em 0 .2em;padding:10px 14px;border-radius:14px;border-color:color-mix(in srgb,var(--violet) 35%,var(--edge));background:linear-gradient(110deg,color-mix(in srgb,var(--violet) 18%,transparent),var(--accent-pale))}
+.toc{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-width:0;margin:1.1em 0 .2em;padding:10px 14px;border-radius:14px;border-color:color-mix(in srgb,var(--violet) 35%,var(--edge));background:linear-gradient(110deg,color-mix(in srgb,var(--violet) 10%,transparent),var(--accent-pale))}
 .toc strong{margin-right:6px;color:var(--violet-light)}
 .toc ol{display:contents;margin:0;padding:0;list-style:none}
 .toc li a{display:inline-block;padding:2px 12px;color:var(--text);text-decoration:none;border:1px solid color-mix(in srgb,var(--violet) 40%,transparent);border-radius:999px;background:rgba(255,255,255,.04);transition:background .15s,box-shadow .15s,color .15s}
 .toc li a:hover{color:#fff;text-shadow:none;background:color-mix(in srgb,var(--violet) 35%,transparent);box-shadow:0 0 14px color-mix(in srgb,var(--violet) 40%,transparent)}
-.box-title{font-family:var(--head);font-size:1.1rem;font-weight:700;background:linear-gradient(90deg,color-mix(in srgb,var(--violet) 32%,transparent),transparent 85%)}
+.box-title{font-family:var(--head);font-size:1.2rem;font-weight:700;background:linear-gradient(90deg,color-mix(in srgb,var(--violet) 32%,transparent),transparent 85%)}
 .box-title::before{content:"✦";margin-right:.5em;font-family:"Segoe UI Symbol","Apple Symbols","DejaVu Sans",sans-serif;color:var(--violet-light);text-shadow:0 0 10px var(--violet)}
 .row{border-bottom-color:color-mix(in srgb,var(--violet) 22%,transparent)}
-.row dt{color:var(--violet-light)}
+.box-body{padding:6px 18px 14px}
+.row{padding:10px 0;grid-template-columns:45% minmax(0,1fr)}
+.row dt{font-size:13px;letter-spacing:.05em;color:var(--violet-light)}
+.row dd{font-size:.94rem;line-height:1.45}
 .arr{color:var(--violet-light)}
 .rel{position:relative;border-color:color-mix(in srgb,var(--violet) 30%,var(--edge));background:linear-gradient(145deg,color-mix(in srgb,var(--violet) 16%,var(--accent-pale)),rgba(0,0,0,.14));transition:transform .18s,box-shadow .18s}
 .rel:hover{transform:translateY(-2px);box-shadow:0 0 0 1px color-mix(in srgb,var(--violet) 60%,transparent),0 12px 28px color-mix(in srgb,var(--violet) 28%,transparent)}
 .rel::after{content:"✦";position:absolute;right:12px;top:10px;font-family:"Segoe UI Symbol","Apple Symbols","DejaVu Sans",sans-serif;font-size:.8rem;color:var(--violet-light);opacity:.55}
-.rel-name{font-family:var(--head);font-size:1.08rem}
+.rel-name{font-family:var(--head);font-size:1.1rem}
+.tab{font-size:14px}
+.tag{font-size:12px}
+.gal-section h2::before{left:-1.05em}
 .tag{background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 50%,#18202b),color-mix(in srgb,var(--violet) 60%,#18202b));border-color:color-mix(in srgb,var(--violet) 45%,transparent)}
 .rel-grid{grid-template-columns:repeat(auto-fill,260px)}
 .rel-entry{display:grid;grid-template-columns:260px minmax(0,1fr);gap:20px;align-items:start;margin:14px 0}
@@ -108,7 +117,9 @@ html{scrollbar-color:color-mix(in srgb,var(--violet) 55%,#000) transparent}
 .portrait{float:none;width:min(70%,260px);margin:10px auto 16px}
 .rel-entry{grid-template-columns:minmax(0,1fr);gap:12px}
 .rel-full{padding:12px 0 0;border-left:0;border-top:1px dashed color-mix(in srgb,var(--violet) 50%,transparent)}
-.article h2{font-size:1.85rem}
+.article h2{font-size:2rem}
+.article h2::before{left:-1em}
+.gal-section h2::before{display:none}
 .hero-inner{padding-top:48px}
 .hero h1{font-size:2.6rem}
 .rel-grid{grid-template-columns:minmax(0,1fr)}
