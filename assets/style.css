@@ -69,7 +69,8 @@ html{scrollbar-color:color-mix(in srgb,var(--violet) 55%,#000) transparent}
 .tab:hover,.gel:hover{box-shadow:0 0 16px color-mix(in srgb,var(--violet) 45%,transparent),0 1px 0 rgba(255,255,255,.16) inset}
 .article h2,.gal-section h2{font-family:var(--display);font-weight:700;font-size:2.4rem;line-height:1.1;letter-spacing:0}
 .article h2{clear:both}
-.article h2::before,.gal-section h2::before{content:"✦";position:absolute;left:-1.25em;top:calc(50% - 5px);transform:translateY(-50%);font-family:"Segoe UI Symbol","Apple Symbols","DejaVu Sans",sans-serif;font-size:.55em;line-height:1;color:var(--violet-light);text-shadow:0 0 10px var(--violet);animation:twinkle-text 3.4s ease-in-out infinite}
+.article h2,.gal-section h2{padding-left:.8em}
+.article h2::before,.gal-section h2::before{content:"✦";position:absolute;left:0;top:calc(50% - 3px);transform:translateY(-50%);font-family:"Segoe UI Symbol","Apple Symbols","DejaVu Sans",sans-serif;font-size:.55em;line-height:1;color:var(--violet-light);text-shadow:0 0 10px var(--violet);animation:twinkle-text 3.4s ease-in-out infinite}
 .article h2::after,.gal-section h2::after{height:2px;background:linear-gradient(90deg,var(--accent),var(--violet) 55%,transparent)}
 .article h3{font-family:var(--head);font-weight:700;font-size:1.25rem;color:var(--violet-light)}
 .article h4{font-family:var(--head);font-weight:700}
@@ -104,7 +105,6 @@ html{scrollbar-color:color-mix(in srgb,var(--violet) 55%,#000) transparent}
 .rel-name{font-family:var(--head);font-size:1.1rem}
 .tab{font-size:14px}
 .tag{font-size:12px}
-.gal-section h2::before{left:-1.05em}
 .tag{background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 50%,#18202b),color-mix(in srgb,var(--violet) 60%,#18202b));border-color:color-mix(in srgb,var(--violet) 45%,transparent)}
 .rel-grid{grid-template-columns:repeat(auto-fill,260px)}
 .rel-entry{display:grid;grid-template-columns:260px minmax(0,1fr);gap:20px;align-items:start;margin:14px 0}
@@ -118,8 +118,6 @@ html{scrollbar-color:color-mix(in srgb,var(--violet) 55%,#000) transparent}
 .rel-entry{grid-template-columns:minmax(0,1fr);gap:12px}
 .rel-full{padding:12px 0 0;border-left:0;border-top:1px dashed color-mix(in srgb,var(--violet) 50%,transparent)}
 .article h2{font-size:2rem}
-.article h2::before{left:-1em}
-.gal-section h2::before{display:none}
 .hero-inner{padding-top:48px}
 .hero h1{font-size:2.6rem}
 .rel-grid{grid-template-columns:minmax(0,1fr)}
