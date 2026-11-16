@@ -32,7 +32,9 @@
 
   const hero = $('hero');
   const q = typeof data.quote === 'string' ? { text: data.quote } : data.quote;
+  const tabsEl = $('tabs');
   hero.innerHTML = `<div class="hero-glow"></div><div class="hero-sparks"></div><div class="hero-inner"><h1>${App.esc(data.name || id)}</h1>${q && q.text ? `<blockquote class="hero-quote"><p>${App.inline(q.text)}</p>${q.by ? `<footer>${App.esc(q.by)}</footer>` : ''}</blockquote>` : ''}</div>`;
+  hero.appendChild(tabsEl);
   if (data.header) hero.style.backgroundImage = `url("${App.resolve(base, data.header)}")`;
   if (typeof Sparkles !== 'undefined') {
     const sparks = hero.querySelector('.hero-sparks');
@@ -59,7 +61,7 @@
   row('Причина смерти', App.esc(data.deathCause || ''));
 
   const fam = (data.family || []).map(f => ({ label: f.label, names: list(f.names) })).filter(f => f.label && f.names.length);
-  $('side').innerHTML =
+  const sideHtml =
     `<section class="box"><h2 class="box-title">${App.esc(data.name || id)}</h2>${rows.length ? `<dl class="box-body">${rows.join('')}</dl>` : ''}</section>` +
     (fam.length ? `<section class="box"><h2 class="box-title">Семья</h2><dl class="box-body">${fam.map(f => `<div class="row"><dt>${App.esc(f.label)}</dt><dd>${f.names.map(link).join('<br>')}</dd></div>`).join('')}</dl></section>` : '');
 
@@ -91,7 +93,7 @@
   const parsed = App.parse(lore, base, name => (name === 'relations' ? relations() : ''));
   const toc = parsed.sections.length >= 3 ? `<nav class="toc"><strong>Содержание</strong><ol>${parsed.sections.map(s => `<li><a href="#${s.id}">${App.esc(s.title)}</a></li>`).join('')}</ol></nav>` : '';
   const portrait = data.portrait && data.portrait.src ? `<figure class="portrait"><div class="portrait-frame"><img src="${App.esc(App.resolve(base, data.portrait.src))}" alt="${App.esc(data.portrait.caption || '')}"></div>${data.portrait.caption ? `<figcaption>${App.inline(data.portrait.caption)}</figcaption>` : ''}</figure>` : '';
-  const articleHtml = portrait + (parsed.lead ? `<div class="lead">${parsed.lead}</div>` : '') + toc + parsed.sections.map(s => `<section id="${s.id}"><h2>${App.esc(s.title)}</h2>${s.html}</section>`).join('');
+  const articleHtml = `<aside class="side">${portrait}${sideHtml}</aside>` + (parsed.lead ? `<div class="lead">${parsed.lead}</div>` : '') + toc + parsed.sections.map(s => `<section id="${s.id}"><h2>${App.esc(s.title)}</h2>${s.html}</section>`).join('');
   $('article').innerHTML = articleHtml || '<p>Здесь пока пусто. Заполни файл lore.md.</p>';
 
   const cats = [['reference', 'Референс'], ['model', 'Модель'], ['arts', 'Арты']];
