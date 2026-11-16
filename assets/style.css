@@ -151,3 +151,9 @@ html{scrollbar-color:color-mix(in srgb,var(--violet) 55%,#000) transparent}
 @media(max-width:850px){.side{float:none;width:auto;margin:0 0 18px}.side .portrait{width:min(70%,260px)}}
 @media(max-width:700px){.hero .tabs{left:20px;top:14px}}
 @media(prefers-reduced-motion:reduce){.tab[data-tab=gallery]{animation:none}}
+.hero{margin-bottom:18px}
+.side .portrait{width:100%;margin:0 0 18px}
+.toc{gap:6px;padding:8px 12px}
+.toc strong{margin-right:4px;font-size:.72rem}
+.toc li a{padding:1px 9px;font-size:.8rem}
+@media(max-width:850px){.side .portrait{width:min(70%,260px);margin:0 auto 18px}}
