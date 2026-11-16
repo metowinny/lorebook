@@ -247,6 +247,8 @@
   });
 
   const hasGallery = items.length > 0;
+  const galleryTab = document.querySelector('[data-tab="gallery"]');
+  if (galleryTab && hasGallery) galleryTab.innerHTML = `Галерея <span class="tab-count">${items.length}</span>`;
   $('tabs').hidden = !hasGallery;
   const route = () => {
     const g = hasGallery && location.hash === '#gallery';
