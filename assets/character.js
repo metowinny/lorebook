@@ -62,7 +62,7 @@
 
   const fam = (data.family || []).map(f => ({ label: f.label, names: list(f.names) })).filter(f => f.label && f.names.length);
   const sideHtml =
-    `<section class="box"><h2 class="box-title">${App.esc(data.name || id)}</h2>${rows.length ? `<dl class="box-body">${rows.join('')}</dl>` : ''}</section>` +
+    `<section class="box"><h2 class="box-title">Основная информация</h2>${rows.length ? `<dl class="box-body">${rows.join('')}</dl>` : ''}</section>` +
     (fam.length ? `<section class="box"><h2 class="box-title">Семья</h2><dl class="box-body">${fam.map(f => `<div class="row"><dt>${App.esc(f.label)}</dt><dd>${f.names.map(link).join('<br>')}</dd></div>`).join('')}</dl></section>` : '');
 
   const relGroups = (data.relations || []).map(g => ({ title: g.title, items: list(g.items).filter(i => i.name) })).filter(g => g.items.length);
@@ -71,7 +71,11 @@
     i.full = /\.md$/i.test(d.trim()) ? await App.text(base + d.trim()).catch(() => '') : d;
   }));
 
-  const relCard = i => `<div class="rel"><div class="rel-head"><span class="rel-name">${link(i)}</span>${i.role ? `<span class="tag">${App.esc(i.role)}</span>` : ''}</div>${i.text ? `<p>${App.inline(i.text)}</p>` : ''}</div>`;
+  const relCard = i => {
+    const portrait = i.portrait ? (typeof i.portrait === 'string' ? i.portrait : i.portrait.src) : '';
+    const portraitAlt = typeof i.portrait === 'object' && i.portrait.alt ? i.portrait.alt : `Портрет: ${i.name}`;
+    return `<div class="rel">${portrait ? `<div class="rel-portrait"><img src="${App.esc(App.resolve(base, portrait))}" alt="${App.esc(portraitAlt)}" loading="lazy"></div>` : ''}<div class="rel-head"><span class="rel-name">${link(i)}</span>${i.role ? `<span class="tag">${App.esc(i.role)}</span>` : ''}</div>${i.text ? `<p>${App.inline(i.text)}</p>` : ''}</div>`;
+  };
 
   const relations = () => relGroups.map(g => {
     let html = `<h3>${App.esc(g.title || '')}</h3>`;
